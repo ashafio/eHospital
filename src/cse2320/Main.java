@@ -8,16 +8,27 @@ public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-        Class.forName("com.mysql.jdbc.Driver");
+//        Class.forName("com.mysql.jdbc.Driver");
 //        String url = "jdbc:mysql://localhost:3306/pass";
 //        Connection con = DriverManager.getConnection(url,"root","");
 //        Statement st = con.createStatement();
 
+        Class.forName("com.mysql.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/register";
+        Connection con = DriverManager.getConnection(url,"root","");
+        Statement st = con.createStatement();
+
+
+
         Request reqobj = new Request();
         reqobj.setVisible(true);
 
-        Register reg = new Register();
+//        new Register(con,st);
+//        Register reg = new Register(con, st);
 
+//
+//        Register reg = new Register();
+//        reg.registercomponents(Connection con,Statement st);
 
 
     }
