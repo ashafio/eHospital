@@ -13,11 +13,16 @@ public class Main {
 //        Connection con = DriverManager.getConnection(url,"root","");
 //        Statement st = con.createStatement();
 
-        Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/register";
-        Connection con = DriverManager.getConnection(url,"root","");
-        Statement st = con.createStatement();
+//        Class.forName("com.mysql.jdbc.Driver");
+//        String url = "jdbc:mysql://localhost:3306/register";
+//        Connection con = DriverManager.getConnection(url,"root","");
+//        Statement st = con.createStatement();
 
+
+//
+//        st.executeUpdate(query);
+//        st.close();
+//        con.close();
 
 
         Request reqobj = new Request();

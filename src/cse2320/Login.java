@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class Login extends JFrame {
     public Container loginContainer;
@@ -59,25 +60,39 @@ public class Login extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = userTextField.getText();
-                String password = passTextField.getText();
 
+                //ResultSet rs = null;
+
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    String url = "jdbc:mysql://localhost:3306/register";
+                    Connection con = DriverManager.getConnection(url, "root", "");
+                    Statement st = con.createStatement();
+                    ResultSet rset;
+
+                    String username = userTextField.getText();
+                    String password = passTextField.getText();
+
+                    String querylogin = "select * from login where username = '" + username + "'and password= '" + password + "')";
+
+
+                     rset = st.executeQuery(querylogin);
+
+                } catch (Exception exception) {
+
+                }
                 //Will add sql later
+                //if(username.equals("ashafio") && password.equals("1234"))
+                    if (rset.next()) {
+                        JOptionPane.showMessageDialog(null, "Login Successful !!!");
+                        dispose();
+                        Home home = new Home();
+                        home.setVisible(true);
 
-                if(username.equals("ashafio") && password.equals("1234"))
-                {
-                    JOptionPane.showMessageDialog(null,"Login Successful !!!");
-                    dispose();
-                    Home home = new Home();
-                    home.setVisible(true);
-
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Incorrect Username or Password. :(");
+                    }
                 }
-
-                else
-                {
-                    JOptionPane.showMessageDialog(null,"Incorrect Username or Password. :(");
-                }
-            }
         });
 
         cancelButton = new JButton("Cancel");

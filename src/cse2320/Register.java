@@ -151,10 +151,11 @@ public class Register extends JFrame{
                 //String query = "Insert into password values ('"+psftxt+"')";
 //                String query = "Insert into info(name,bday,nid,bg,location,phone,email,username,password) values('"+namedb+dobdb+niddb+bgdb+locdb+phndb+emaildb+userdb+passdb+"') ";
 //                String query = "INSERT INTO info values('"+namedb+"','"+dobdb+"','"+niddb+"','"+bgdb+"','"+locdb+"','"+phndb+"','"+emaildb+"','"+userdb+"','"+passdb+"')";
-
-
-
                 try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    String url = "jdbc:mysql://localhost:3306/register";
+                    Connection con = DriverManager.getConnection(url,"root","");
+                    Statement st = con.createStatement();
 
 
                     String namedb = new String(nameField.getText());
@@ -170,9 +171,10 @@ public class Register extends JFrame{
 
 
                     String query = "Insert into info values('"+namedb+"','"+dobdb+"','"+niddb+"','"+bgdb+"','"+locdb+"','"+phndb+"','"+emaildb+"','"+userdb+"','"+passdb+"')";
-
-                    //rs = st.executeUpdate(query);
-//                    st.executeUpdate(query);
+                    String queryreglogin = "Insert into login values('"+userdb+"','"+passdb+"')";
+                   // rs = st.executeUpdate(query);
+                    st.executeUpdate(query);
+                    st.executeUpdate(queryreglogin);
 //                    st.close();
 //                    con.close();
 
@@ -182,14 +184,10 @@ public class Register extends JFrame{
                 }
 
 
-
-
-
-
                 dispose();
                 JOptionPane.showMessageDialog(null,"Submitted Successfully !!! Now You Can Login.");
-                //Login login = new Login();
-                //login.setVisible(true);
+                Login login = new Login();
+                login.setVisible(true);
             }
         });
 
