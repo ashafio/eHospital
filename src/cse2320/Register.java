@@ -4,8 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Scanner;
 
-public class Register extends JFrame {
+public class Register extends JFrame{
     public Container registerContainer;
     public Font font,buttonFont;
     public JLabel nameLabel,dobLabel,nidLabel,bloodGroupLabel,locationLabel,phoneLabel,emailLabel,setUserLabel,setPassLabel;
@@ -13,14 +19,15 @@ public class Register extends JFrame {
     public JPasswordField setPasswordField;
     public JButton submitButton,cancelButton;
 
-    Register()
-    {
+    Register() throws SQLException, ClassNotFoundException {
         registercomponents();
     }
-    public void registercomponents() {
+    public void registercomponents() throws ClassNotFoundException, SQLException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(380,20,580,700);
         this.setTitle("Register Here");
+
+        //Scanner input = new Scanner(System.in);
 
         font = new Font("architectural",Font.BOLD,20);
         buttonFont = new Font("segoe ui",Font.PLAIN,14);
@@ -28,6 +35,16 @@ public class Register extends JFrame {
         registerContainer = this.getContentPane();
         registerContainer.setLayout(null);
         registerContainer.setBackground(Color.pink);
+
+
+//        Class.forName("com.mysql.jdbc.Driver");
+//        String url = "jdbc:mysql://localhost:3306/register";
+        String url = "jdbc:mysql://localhost:3306/pass";
+        Connection con = DriverManager.getConnection(url,"root","");
+        Statement st = con.createStatement();
+
+
+
 
         nameLabel = new JLabel("Name: ");
         nameLabel.setBounds(20,20,260,60);
@@ -128,13 +145,46 @@ public class Register extends JFrame {
         submitButton.setBackground(Color.CYAN);
         registerContainer.add(submitButton);
 
+        String namedb = new String(nameField.getText());
+        String dobdb = new String(dobField.getText());
+        String niddb = new String(nidField.getText());
+        String bgdb = new String(bloodGroupField.getText());
+        String locdb = new String(locationField.getText());
+        String phndb = new String(phoneField.getText());
+        String emaildb = new String(emailField.getText());
+        String userdb = new String(setUserField.getText());
+        String passdb = new String(setPasswordField.getPassword());
+
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //String query = "Insert into password values ('"+psftxt+"')";
+//                String query = "Insert into info(name,bday,nid,bg,location,phone,email,username,password) values('"+namedb+dobdb+niddb+bgdb+locdb+phndb+emaildb+userdb+passdb+"') ";
+                String query = "Insert into info values('"+namedb+"','"+dobdb+"','"+niddb+"','"+bgdb+"','"+locdb+"','"+phndb+"','"+emaildb+"','"+userdb+"','"+passdb+"')";
+
+
+
+                try {
+                    //rs = st.executeUpdate(query);
+                    st.executeUpdate(query);
+                    st.close();
+                    con.close();
+
+                } catch (Exception exception)
+                {
+
+                }
+
+
+
+
+
+
                 dispose();
                 JOptionPane.showMessageDialog(null,"Submitted Successfully !!! Now You Can Login.");
-                Login login = new Login();
-                login.setVisible(true);
+                //Login login = new Login();
+                //login.setVisible(true);
             }
         });
 

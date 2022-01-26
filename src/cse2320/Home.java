@@ -53,7 +53,7 @@ public class Home extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                BuyCylinder cylinders = new BuyCylinder();
+                Cylinder cylinders = new Cylinder();
                 cylinders.setVisible(true);
             }
         });
@@ -85,7 +85,7 @@ public class Home extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                BookAppoinment appointment = new BookAppoinment();
+                BookAppointment appointment = new BookAppointment();
                 appointment.setVisible(true);
             }
         });

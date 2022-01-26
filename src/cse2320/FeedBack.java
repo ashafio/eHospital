@@ -24,7 +24,7 @@ public class FeedBack extends JFrame {
         nc.setLayout(null);
         nc.setBackground(Color.GRAY);
 
-        welcome = new JLabel("Hello Everyone. Welcome to eHospital.");
+        welcome = new JLabel("Hello.");
         cmntreq = new JLabel("Please, write and submit your comment below.");
 
         welcome.setBounds(50,50,500,50);
@@ -38,6 +38,8 @@ public class FeedBack extends JFrame {
         ta = new JTextArea("Write your comment here...");
         ta.setFont(f2);
         ta.setBounds(50,200,480,250);
+        ta.setLineWrap(true);
+        ta.setWrapStyleWord(true);
         nc.add(ta);
 
         submit = new JButton("Submit");

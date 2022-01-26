@@ -3,6 +3,7 @@ package cse2320;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 
 public class Request extends JFrame{
     public JLabel welcomeLabel,loginLabel,registerLabel,iconLabel;
@@ -74,7 +75,14 @@ public class Request extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Register register = new Register();
+                Register register = null;
+                try {
+                    register = new Register();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
                 register.setVisible(true);
             }
         });

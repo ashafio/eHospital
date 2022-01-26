@@ -2,18 +2,16 @@ package cse2320;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Aboutus extends JFrame {
-    public Container aboutContainer;
+public class BookAppointment extends JFrame {
+    public Container appointmentContainer;
     public Font font,buttonFont;
 
-    Aboutus()
+    BookAppointment()
     {
-        aboutcomponents();
+        appointmentcomponents();
     }
-    public void aboutcomponents() {
+    public void appointmentcomponents() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(433, 20, 500, 700);
         this.setTitle("Medicine");
@@ -21,9 +19,9 @@ public class Aboutus extends JFrame {
         font = new Font("architectural", Font.BOLD, 20);
         buttonFont = new Font("segoe ui", Font.PLAIN, 14);
 
-        aboutContainer = this.getContentPane();
-        aboutContainer.setLayout(null);
-        aboutContainer.setBackground(Color.GRAY);
+        appointmentContainer = this.getContentPane();
+        appointmentContainer.setLayout(null);
+        appointmentContainer.setBackground(Color.decode("#3ad2ff"));
 
 
     }};
